@@ -500,33 +500,26 @@ function initThemeToggle() {
     themeToggle.className = 'theme-toggle';
     themeToggle.innerHTML = '<i class="bi bi-moon-fill"></i>';
     themeToggle.setAttribute('aria-label', 'Toggle dark mode');
-    themeToggle.style.cssText = `
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 9999;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    `;
+    themeToggle.title = 'Toggle dark/light mode';
     
     document.body.appendChild(themeToggle);
+    
+    // Check for saved theme preference or default to light mode
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+        themeToggle.querySelector('i').className = 'bi bi-sun-fill';
+    }
     
     themeToggle.addEventListener('click', () => {
         document.body.classList.toggle('dark-theme');
         const icon = themeToggle.querySelector('i');
-        icon.className = document.body.classList.contains('dark-theme') 
-            ? 'bi bi-sun-fill' 
-            : 'bi bi-moon-fill';
+        const isDark = document.body.classList.contains('dark-theme');
+        
+        icon.className = isDark ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
+        
+        // Save theme preference
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
 }
 
