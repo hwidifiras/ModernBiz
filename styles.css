@@ -286,9 +286,11 @@ html {
 .feature-icon {
     position: relative;
     display: inline-block;
-    padding: 20px;
+    padding: 2px;
     background: linear-gradient(135deg, rgba(0, 123, 255, 0.1) 0%, rgba(40, 167, 69, 0.1) 100%);
     border-radius: 50%;
+    width: 80px;
+    margin: auto;
     margin-bottom: 1rem;
 }
 
@@ -601,6 +603,10 @@ html {
     box-shadow: var(--shadow-light);
     transition: all var(--transition-normal);
     border: 1px solid #e9ecef;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 250px;
 }
 
 .contact-info:hover {
@@ -621,18 +627,30 @@ html {
     line-height: 40px;
     margin: 0 auto 15px auto;
     transition: all var(--transition-normal);
+    color: var(--primary-color);
 }
 
 .contact-info:hover i {
-    background: var(--gradient-primary);
-    color: white;
+    background: white;
+    color: var(--primary-color);
     transform: scale(1.1) rotate(5deg);
+    box-shadow: var(--shadow-colored);
+    border: 2px solid var(--primary-color);
 }
 
 .contact-info h5 {
     font-weight: 600;
     color: var(--dark-color);
     margin-bottom: 10px;
+    flex-shrink: 0;
+}
+
+.contact-info p {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
 }
 
 /* Stats */
